@@ -22,7 +22,10 @@ HEALTHCHECK CMD curl --fail http://127.0.0.1:9200 || exit 1
 
 WORKDIR /usr/share/elasticsearch
 
-COPY docker-entrypoint.sh /docker-entrypoint.sh
+# add local files
+COPY rootfs/ /
+
+RUN chmod 777 /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 

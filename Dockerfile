@@ -22,6 +22,9 @@ HEALTHCHECK CMD curl --fail http://127.0.0.1:9200 || exit 1
 
 WORKDIR /usr/share/elasticsearch
 
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # Dummy overridable parameter parsed by entrypoint

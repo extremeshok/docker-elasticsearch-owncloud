@@ -27,7 +27,7 @@ COPY rootfs/ /
 
 RUN chmod 777 /docker-entrypoint.sh
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+#ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # Dummy overridable parameter parsed by entrypoint
 CMD ["eswrapper"]

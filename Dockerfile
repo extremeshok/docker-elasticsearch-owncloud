@@ -25,9 +25,11 @@ WORKDIR /usr/share/elasticsearch
 # add local files
 COPY rootfs/ /
 
+USER root
+
 RUN chmod 777 /docker-entrypoint.sh
 
-#ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # Dummy overridable parameter parsed by entrypoint
 CMD ["eswrapper"]

@@ -1,4 +1,4 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:5.6.16 AS BUILD
+FROM docker.elastic.co/elasticsearch/elasticsearch:5.6 AS BUILD
 
 LABEL mantainer="Adrian Kriel <admin@extremeshok.com>" vendor="eXtremeSHOK.com"
 
@@ -16,20 +16,20 @@ RUN echo "**** Install packages ****" \
 # ignore spelling
   && elasticsearch-plugin install --batch -s analysis-phonetic
 
-EXPOSE 9200 9300
+#EXPOSE 9200 9300
 
 HEALTHCHECK CMD curl --fail http://127.0.0.1:9200 || exit 1
 
-WORKDIR /usr/share/elasticsearch
+#WORKDIR /usr/share/elasticsearch
 
 # add local files
-COPY rootfs/ /
+#COPY rootfs/ /
 
-USER root
+#USER root
 
-RUN chmod 777 /docker-entrypoint.sh
+#RUN chmod 777 /docker-entrypoint.sh
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+#ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # Dummy overridable parameter parsed by entrypoint
-CMD ["eswrapper"]
+#CMD ["eswrapper"]

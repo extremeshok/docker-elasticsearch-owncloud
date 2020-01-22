@@ -10,15 +10,17 @@ ENV LC_ALL=${OS_LOCALE}
 
 RUN echo "**** Install packages ****" \
 # attachment doc/pdf/etc support
-  && elasticsearch-plugin install --batch -s ingest-attachment \
+  && elasticsearch-plugin install -s ingest-attachment \
 # CN users
-  && elasticsearch-plugin install --batch -s analysis-smartcn \
+  && elasticsearch-plugin install -s analysis-smartcn \
 # ignore spelling
-  && elasticsearch-plugin install --batch -s analysis-phonetic
-
-#EXPOSE 9200 9300
+  && elasticsearch-plugin install -s analysis-phonetic \
+# remove x-pack
+  && elasticsearch-plugin remove -s x-pack
 
 HEALTHCHECK CMD curl --fail http://127.0.0.1:9200 || exit 1
+
+#EXPOSE 9200 9300
 
 #WORKDIR /usr/share/elasticsearch
 

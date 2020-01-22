@@ -18,24 +18,13 @@ RUN echo "**** Install packages ****" \
 
 HEALTHCHECK CMD curl --fail http://127.0.0.1:9200 || exit 1
 
-# disable xpack and save some resources
+# Disable xpack and save some resources
 ENV xpack.security.enabled=false
 ENV xpack.watcher.enabled=false
 ENV xpack.monitoring.enabled=false
 ENV xpack.ml.enabled=false
 
-#EXPOSE 9200 9300
-
-#WORKDIR /usr/share/elasticsearch
-
-# add local files
-#COPY rootfs/ /
-
-#USER root
-
-#RUN chmod 777 /docker-entrypoint.sh
-
-#ENTRYPOINT ["/docker-entrypoint.sh"]
-
-# Dummy overridable parameter parsed by entrypoint
-#CMD ["eswrapper"]
+# Single Node
+ENV bootstrap.memory_lock=true
+ENV discovery.type=single-node
+ENV cluster.routing.allocation.disk.threshold_enabled=false

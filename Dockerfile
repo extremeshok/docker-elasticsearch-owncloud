@@ -14,11 +14,12 @@ RUN echo "**** Install packages ****" \
 # CN users
   && elasticsearch-plugin install -s analysis-smartcn \
 # ignore spelling
-  && elasticsearch-plugin install -s analysis-phonetic \
-# remove x-pack
-  && elasticsearch-plugin remove -s x-pack
+  && elasticsearch-plugin install -s analysis-phonetic
 
 HEALTHCHECK CMD curl --fail http://127.0.0.1:9200 || exit 1
+
+ENV xpack.security.enabled=false
+ENV xpack.watcher.enabled=false
 
 #EXPOSE 9200 9300
 

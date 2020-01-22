@@ -1,4 +1,4 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:5.6.16 AS BUILD
+FROM docker.elastic.co/elasticsearch/elasticsearch-oss:5.6.16 AS BUILD
 
 LABEL mantainer="Adrian Kriel <admin@extremeshok.com>" vendor="eXtremeSHOK.com"
 
@@ -18,8 +18,11 @@ RUN echo "**** Install packages ****" \
 
 HEALTHCHECK CMD curl --fail http://127.0.0.1:9200 || exit 1
 
+# disable xpack and save some resources
 ENV xpack.security.enabled=false
 ENV xpack.watcher.enabled=false
+ENV xpack.monitoring.enabled=false
+ENV xpack.ml.enabled=false
 
 #EXPOSE 9200 9300
 

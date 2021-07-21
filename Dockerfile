@@ -1,4 +1,6 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:5.6.16 AS BUILD
+FROM elasticsearch:5.6-alpine AS BUILD
+
+#FROM docker.elastic.co/elasticsearch/elasticsearch:5.6.16 AS BUILD
 
 LABEL mantainer="Adrian Kriel <admin@extremeshok.com>" vendor="eXtremeSHOK.com"
 
